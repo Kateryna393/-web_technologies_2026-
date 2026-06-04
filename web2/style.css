@@ -1,0 +1,71 @@
+/* ============================================================
+   EXERCISE: CSS Selectors
+   ============================================================
+
+   Work through the TODOs.
+   Each one introduces a different way to target elements.
+
+============================================================ */
+
+/* --- Base styles (already done for you) --- */
+
+body {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 2rem auto;
+  color: #222;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* TODO 2: Class selector */
+.highlight {
+  background-color: #fffbdd;
+  border-left: 4px solid gold;
+}
+
+/* TODO 3: ID selector */
+#intro {
+  font-style: italic;
+  color: darkgreen;
+}
+
+/* ── TODO 4: Descendant selector ────────────────────────────
+   Target only <p> elements that are inside a .card.
+   Change their color to #444.
+   What do you notice compared to TODO 1?
+*/
+.card p {
+  color: #444;
+}
+
+/* ── TODO 5: Multiple classes ───────────────────────────────
+   The second card has BOTH classes: "card" AND "highlight".
+   Target only elements that have both classes at once.
+   HINT: .first-class.second-class { } — no space between them
+   Make the text of that card bold.
+*/
+.card.highlight {
+  font-weight: bold;
+}
+
+/* ── TODO 6: The broken rule ────────────────────────────────
+   Try to make ALL <strong> elements red.
+*/
+strong {
+  color: red;
+}
+
+.card strong {
+  color: steelblue; /* this rule already exists — don't touch it */
+}
