@@ -54,7 +54,8 @@ body {
   src: url("Burgues Script Regular.otf") format("opentype");
 }
 
-.bg-watermark { /* Portfolio(text) */
+.bg-watermark {
+  /* Portfolio(text) */
   position: absolute;
   font-size: 22vw;
   font-family: "Burgues Script", "Georgia", serif;
@@ -66,20 +67,22 @@ body {
   transform: translateY(-50%);
 }
 
-.hero-content { 
+.hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
   width: 100%;
 }
-.name-tag { /* NIZHNYKK button */
+.name-tag {
+  /* NIZHNYKK button */
   font-size: 16px;
   margin-bottom: 40px;
   letter-spacing: 2px;
   top: 220px;
   position: relative;
 }
-.hero-images { /* 2 images */
+.hero-images {
+  /* 2 images */
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -91,7 +94,8 @@ body {
   object-fit: cover;
 }
 
-.ticker-wrapper { /* animation */
+.ticker-wrapper {
+  /* animation */
   background-color: #0029ff;
   color: #ffffff;
   padding: 8px 0;
@@ -113,7 +117,8 @@ body {
   }
 }
 
-.action-section { /* VIEW PROJECTS button */
+.action-section {
+  /* VIEW PROJECTS button */
   display: flex;
   justify-content: center;
   padding: 80px 0;
@@ -269,7 +274,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding: 60px 40px;
-  gap: 60px; /* Відступ між текстом і фотографією */
+  gap: 60px;
 }
 
 .about-text-col {

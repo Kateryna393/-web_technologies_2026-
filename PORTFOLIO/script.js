@@ -1,20 +1,21 @@
-const API_URL = "https://fearless-angel-194a9aaa96.strapiapp.com"; 
+// api strapi cloud
+const API_URL = "https://jubilant-presence-4658e9cc82.strapiapp.com"; 
 
 async function loadStrapiProjects() {
     const container = document.getElementById('projects-container');
     if (!container) return; 
 
     try {
-        const response = await fetch(`${config.SPACE_ID}/api/projects?populate=*`, {
+        // fetch media from strapi
+        const response = await fetch(`${API_URL}/api/projects?populate=*`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": config.ACCESS_TOKEN
+                "Content-Type": "application/json"
             }
         });
 
         if (!response.ok) {
-            throw new Error(`Request error! Status: ${response.status}`);
+            throw new Error(`Server returned status: ${response.status}`);
         }
 
         const jsonResult = await response.json();
@@ -28,25 +29,20 @@ async function loadStrapiProjects() {
         container.innerHTML = "";
 
         projects.forEach(project => {
-            // 1. Беремо назву з поля title
-            const title = project.title || (project.attributes ? project.attributes.title : "Untitled Project");
-            
-            // 2. Беремо посилання на сам проєкт з поля link
-            const projectLink = project.link || (project.attributes ? project.attributes.link : "#");
-            
-            // 3. Беремо категорію з поля description (наприклад: GRAPHIC DESIGN)
-            const category = project.description || (project.attributes ? project.attributes.description : "DESIGN");
+            const title = project.title || "Untitled Project";
+            const link = project.link || "#";
+            const category = project.category || "DESIGN";
 
-            // 4. Картинку підставляємо автоматично (або міняємо в коді нижче)
+            // if image not found, use placeholder
             let imgUrl = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600"; 
-
-            // ЛАЙФХАК: якщо хочеш свою картинку для FRANSUA, ми можемо прописати її прямо сюди за назвою:
-            if (title.toLowerCase().includes("fransua")) {
-                imgUrl = "https://images.unsplash.com/photo-1541462608141-ad4979e408c9?w=600"; // Тут буде фото дизайну
+            
+            // strapi media path syntax
+            if (project.image && project.image.url) {
+                imgUrl = project.image.url.startsWith('http') ? project.image.url : `${API_URL}${project.image.url}`;
             }
 
             const projectRow = document.createElement('a');
-            projectRow.href = projectLink;
+            projectRow.href = link;
             projectRow.target = "_blank";
             projectRow.className = 'project-row';
 
@@ -64,9 +60,9 @@ async function loadStrapiProjects() {
         });
 
     } catch (error) {
-        console.error("Error:", error);
-        container.innerHTML = "<p class='status-msg'>Failed to connect to CMS.</p>";
-    }
+        console.error("Content loading error:", error);
+        container.innerHTML = `<p class='status-msg'>Oops! Failed to load projects. Please try refreshing the page later.: ${error.message}</p>`;
+ }
 }
 
 document.addEventListener('DOMContentLoaded', loadStrapiProjects);
